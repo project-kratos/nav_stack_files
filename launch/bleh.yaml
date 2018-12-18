@@ -1,0 +1,241 @@
+amcl: {base_frame_id: base_footprint, beam_skip_distance: 0.5, beam_skip_threshold: 0.3,
+  do_beamskip: false, first_map_only: false, global_frame_id: map, gui_publish_rate: 50.0,
+  initial_cov_aa: 0.0012834976101359032, initial_cov_xx: 0.0014131943868311292, initial_cov_yy: 0.0016829995968002387,
+  initial_pose_a: 2.9610972624183933, initial_pose_x: -0.5443426088045844, initial_pose_y: 0.30174626037277813,
+  kld_err: 0.02, kld_z: 0.99, laser_lambda_short: 0.1, laser_likelihood_max_dist: 2.0,
+  laser_max_beams: 180, laser_max_range: 3.5, laser_min_range: -1.0, laser_model_type: likelihood_field,
+  laser_sigma_hit: 0.2, laser_z_hit: 0.5, laser_z_max: 0.05, laser_z_rand: 0.5, laser_z_short: 0.05,
+  max_particles: 3000, min_particles: 500, odom_alpha1: 0.1, odom_alpha2: 0.1, odom_alpha3: 0.1,
+  odom_alpha4: 0.1, odom_alpha5: 0.2, odom_frame_id: odom, odom_model_type: diff,
+  recovery_alpha_fast: 0.0, recovery_alpha_slow: 0.0, resample_interval: 1, restore_defaults: false,
+  save_pose_rate: 0.5, tf_broadcast: true, transform_tolerance: 0.5, update_min_a: 0.2,
+  update_min_d: 0.2, use_map_topic: false}
+gazebo: {auto_disable_bodies: false, cfm: 1.0e-05, contact_max_correcting_vel: 2000.0,
+  contact_surface_layer: 0.01, erp: 0.2, gravity_x: 0.0, gravity_y: 0.0, gravity_z: -9.8,
+  max_contacts: 20, max_update_rate: 1000.0, sor_pgs_iters: 150, sor_pgs_precon_iters: 0,
+  sor_pgs_rms_error_tol: 0.0, sor_pgs_w: 1.4, time_step: 0.001}
+gazebo_gui: {auto_disable_bodies: false, cfm: 1.0e-05, contact_max_correcting_vel: 2000.0,
+  contact_surface_layer: 0.01, erp: 0.2, gravity_x: 0.0, gravity_y: 0.0, gravity_z: -9.8,
+  max_contacts: 20, max_update_rate: 1000.0, sor_pgs_iters: 150, sor_pgs_precon_iters: 0,
+  sor_pgs_rms_error_tol: 0.0, sor_pgs_w: 1.4, time_step: 0.001}
+initial_pose: {qx: -0.003839436047256489, qy: 0.00032443585647504673, qz: 0.996285474611933,
+  tx: -0.545386305022414, ty: 0.3045540195664696, tz: -0.0010013943742206294}
+move_base:
+  DWAPlannerROS: {acc_lim_theta: 3.2, acc_lim_x: 2.5, acc_lim_y: 0.0, acc_limit_trans: 0.1,
+    angular_sim_granularity: 0.1, controller_frequency: 10.0, forward_point_distance: 0.325,
+    goal_distance_bias: 20.0, latch_xy_goal_tolerance: false, max_rot_vel: 2.75, max_scaling_factor: 0.2,
+    max_trans_vel: 0.22, max_vel_x: 0.22, max_vel_y: 0.0, min_rot_vel: 1.37, min_trans_vel: 0.11,
+    min_vel_x: -0.22, min_vel_y: 0.0, occdist_scale: 0.02, oscillation_reset_angle: 0.2,
+    oscillation_reset_dist: 0.05, path_distance_bias: 32.0, prune_plan: false, publish_cost_grid_pc: true,
+    publish_traj_pc: true, restore_defaults: false, rot_stopped_vel: 0.1, scaling_speed: 0.25,
+    sim_granularity: 0.025, sim_time: 1.5, stop_time_buffer: 0.2, trans_stopped_vel: 0.1,
+    twirling_scale: 0.0, use_dwa: true, vth_samples: 20, vtheta_samples: 40, vx_samples: 20,
+    vy_samples: 1, xy_goal_tolerance: 0.05, yaw_goal_tolerance: 0.17}
+  aggressive_reset: {reset_distance: 1.84}
+  base_global_planner: navfn/NavfnROS
+  base_local_planner: dwa_local_planner/DWAPlannerROS
+  clearing_rotation_allowed: true
+  conservative_reset: {reset_distance: 3.0}
+  conservative_reset_dist: 3.0
+  controller_frequency: 10.0
+  controller_patience: 15.0
+  global_costmap:
+    footprint: '[[-0.105,-0.105],[-0.105,0.105],[0.041,0.105],[0.041,-0.105]]'
+    footprint_padding: 0.01
+    global_frame: /map
+    height: 10
+    inflation_layer: {cost_scaling_factor: 3.0, enabled: true, inflate_unknown: false,
+      inflation_radius: 1.0}
+    map_type: costmap
+    obstacle_layer:
+      combination_method: 1
+      enabled: true
+      footprint_clearing_enabled: true
+      max_obstacle_height: 2.0
+      observation_sources: scan
+      obstacle_range: 3.0
+      raytrace_range: 3.5
+      scan: {clearing: true, data_type: LaserScan, marking: true, sensor_frame: base_scan,
+        topic: scan}
+    origin_x: 0.0
+    origin_y: 0.0
+    plugins:
+    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+    - {name: obstacle_layer, type: 'costmap_2d::ObstacleLayer'}
+    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+    publish_frequency: 10.0
+    resolution: 0.05
+    robot_base_frame: /base_footprint
+    robot_radius: 0.46
+    static_layer: {enabled: true}
+    static_map: true
+    transform_tolerance: 0.5
+    update_frequency: 10.0
+    width: 10
+  local_costmap:
+    footprint: '[[-0.105,-0.105],[-0.105,0.105],[0.041,0.105],[0.041,-0.105]]'
+    footprint_padding: 0.01
+    global_frame: /odom
+    height: 3
+    inflation_layer: {cost_scaling_factor: 3.0, enabled: true, inflate_unknown: false,
+      inflation_radius: 1.0}
+    map_type: costmap
+    obstacle_layer:
+      combination_method: 1
+      enabled: true
+      footprint_clearing_enabled: true
+      max_obstacle_height: 2.0
+      observation_sources: scan
+      obstacle_range: 3.0
+      raytrace_range: 3.5
+      scan: {clearing: true, data_type: LaserScan, marking: true, sensor_frame: base_scan,
+        topic: scan}
+    origin_x: 0.0
+    origin_y: 0.0
+    plugins:
+    - {name: obstacle_layer, type: 'costmap_2d::ObstacleLayer'}
+    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+    publish_frequency: 10.0
+    resolution: 0.05
+    robot_base_frame: /base_footprint
+    robot_radius: 0.46
+    rolling_window: true
+    static_map: false
+    transform_tolerance: 0.5
+    update_frequency: 10.0
+    width: 3
+  max_planning_retries: -1
+  oscillation_distance: 0.2
+  oscillation_timeout: 10.0
+  planner_frequency: 5.0
+  planner_patience: 5.0
+  recovery_behavior_enabled: true
+  restore_defaults: false
+  shutdown_costmaps: false
+robot_description: "<?xml version=\"1.0\" ?>\n<!-- ===================================================================================\
+  \ -->\n<!-- |    This document was autogenerated by xacro from /opt/ros/kinetic/share/turtlebot3_description/urdf/turtlebot3_burger.urdf.xacro\
+  \ | -->\n<!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                \
+  \                 | -->\n<!-- ===================================================================================\
+  \ -->\n<robot name=\"turtlebot3_burger\" xmlns:xacro=\"http://ros.org/wiki/xacro\"\
+  >\n  <!-- Init colour -->\n  <material name=\"black\">\n    <color rgba=\"0.0 0.0\
+  \ 0.0 1.0\"/>\n  </material>\n  <material name=\"dark\">\n    <color rgba=\"0.3\
+  \ 0.3 0.3 1.0\"/>\n  </material>\n  <material name=\"light_black\">\n    <color\
+  \ rgba=\"0.4 0.4 0.4 1.0\"/>\n  </material>\n  <material name=\"blue\">\n    <color\
+  \ rgba=\"0.0 0.0 0.8 1.0\"/>\n  </material>\n  <material name=\"green\">\n    <color\
+  \ rgba=\"0.0 0.8 0.0 1.0\"/>\n  </material>\n  <material name=\"grey\">\n    <color\
+  \ rgba=\"0.5 0.5 0.5 1.0\"/>\n  </material>\n  <material name=\"orange\">\n    <color\
+  \ rgba=\"1.0 0.423529411765 0.0392156862745 1.0\"/>\n  </material>\n  <material\
+  \ name=\"brown\">\n    <color rgba=\"0.870588235294 0.811764705882 0.764705882353\
+  \ 1.0\"/>\n  </material>\n  <material name=\"red\">\n    <color rgba=\"0.8 0.0 0.0\
+  \ 1.0\"/>\n  </material>\n  <material name=\"white\">\n    <color rgba=\"1.0 1.0\
+  \ 1.0 1.0\"/>\n  </material>\n  <gazebo reference=\"base_link\">\n    <material>Gazebo/DarkGrey</material>\n\
+  \  </gazebo>\n  <gazebo reference=\"wheel_left_link\">\n    <mu1>0.1</mu1>\n   \
+  \ <mu2>0.1</mu2>\n    <kp>500000.0</kp>\n    <kd>10.0</kd>\n    <minDepth>0.001</minDepth>\n\
+  \    <maxVel>0.1</maxVel>\n    <fdir1>1 0 0</fdir1>\n    <material>Gazebo/FlatBlack</material>\n\
+  \  </gazebo>\n  <gazebo reference=\"wheel_right_link\">\n    <mu1>0.1</mu1>\n  \
+  \  <mu2>0.1</mu2>\n    <kp>500000.0</kp>\n    <kd>10.0</kd>\n    <minDepth>0.001</minDepth>\n\
+  \    <maxVel>0.1</maxVel>\n    <fdir1>1 0 0</fdir1>\n    <material>Gazebo/FlatBlack</material>\n\
+  \  </gazebo>\n  <gazebo reference=\"caster_back_link\">\n    <mu1>0.1</mu1>\n  \
+  \  <mu2>0.1</mu2>\n    <kp>1000000.0</kp>\n    <kd>100.0</kd>\n    <minDepth>0.001</minDepth>\n\
+  \    <maxVel>1.0</maxVel>\n    <material>Gazebo/FlatBlack</material>\n  </gazebo>\n\
+  \  <gazebo reference=\"imu_link\">\n    <sensor name=\"imu\" type=\"imu\">\n   \
+  \   <always_on>true</always_on>\n      <visualize>false</visualize>\n    </sensor>\n\
+  \    <material>Gazebo/FlatBlack</material>\n  </gazebo>\n  <gazebo>\n    <plugin\
+  \ filename=\"libgazebo_ros_diff_drive.so\" name=\"turtlebot3_burger_controller\"\
+  >\n      <commandTopic>cmd_vel</commandTopic>\n      <odometryTopic>odom</odometryTopic>\n\
+  \      <odometryFrame>odom</odometryFrame>\n      <odometrySource>world</odometrySource>\n\
+  \      <publishOdomTF>true</publishOdomTF>\n      <robotBaseFrame>base_footprint</robotBaseFrame>\n\
+  \      <publishWheelTF>false</publishWheelTF>\n      <publishTf>true</publishTf>\n\
+  \      <publishWheelJointState>true</publishWheelJointState>\n      <legacyMode>false</legacyMode>\n\
+  \      <updateRate>30</updateRate>\n      <leftJoint>wheel_left_joint</leftJoint>\n\
+  \      <rightJoint>wheel_right_joint</rightJoint>\n      <wheelSeparation>0.160</wheelSeparation>\n\
+  \      <wheelDiameter>0.066</wheelDiameter>\n      <wheelAcceleration>1</wheelAcceleration>\n\
+  \      <wheelTorque>10</wheelTorque>\n      <rosDebugLevel>na</rosDebugLevel>\n\
+  \    </plugin>\n  </gazebo>\n  <gazebo>\n    <plugin filename=\"libgazebo_ros_imu.so\"\
+  \ name=\"imu_plugin\">\n      <alwaysOn>true</alwaysOn>\n      <bodyName>imu_link</bodyName>\n\
+  \      <frameName>imu_link</frameName>\n      <topicName>imu</topicName>\n     \
+  \ <serviceName>imu_service</serviceName>\n      <gaussianNoise>0.0</gaussianNoise>\n\
+  \      <updateRate>200</updateRate>\n      <imu>\n        <noise>\n          <type>gaussian</type>\n\
+  \          <rate>\n            <mean>0.0</mean>\n            <stddev>2e-4</stddev>\n\
+  \            <bias_mean>0.0000075</bias_mean>\n            <bias_stddev>0.0000008</bias_stddev>\n\
+  \          </rate>\n          <accel>\n            <mean>0.0</mean>\n          \
+  \  <stddev>1.7e-2</stddev>\n            <bias_mean>0.1</bias_mean>\n           \
+  \ <bias_stddev>0.001</bias_stddev>\n          </accel>\n        </noise>\n     \
+  \ </imu>\n    </plugin>\n  </gazebo>\n  <gazebo reference=\"base_scan\">\n    <material>Gazebo/FlatBlack</material>\n\
+  \    <sensor name=\"lds_lfcd_sensor\" type=\"ray\">\n      <pose>0 0 0 0 0 0</pose>\n\
+  \      <visualize>false</visualize>\n      <update_rate>5</update_rate>\n      <ray>\n\
+  \        <scan>\n          <horizontal>\n            <samples>360</samples>\n  \
+  \          <resolution>1</resolution>\n            <min_angle>0.0</min_angle>\n\
+  \            <max_angle>6.28319</max_angle>\n          </horizontal>\n        </scan>\n\
+  \        <range>\n          <min>0.120</min>\n          <max>3.5</max>\n       \
+  \   <resolution>0.015</resolution>\n        </range>\n        <noise>\n        \
+  \  <type>gaussian</type>\n          <mean>0.0</mean>\n          <stddev>0.01</stddev>\n\
+  \        </noise>\n      </ray>\n      <plugin filename=\"libgazebo_ros_laser.so\"\
+  \ name=\"gazebo_ros_lds_lfcd_controller\">\n        <topicName>scan</topicName>\n\
+  \        <frameName>base_scan</frameName>\n      </plugin>\n    </sensor>\n  </gazebo>\n\
+  \  <link name=\"base_footprint\"/>\n  <joint name=\"base_joint\" type=\"fixed\"\
+  >\n    <parent link=\"base_footprint\"/>\n    <child link=\"base_link\"/>\n    <origin\
+  \ rpy=\"0 0 0\" xyz=\"0.0 0.0 0.010\"/>\n  </joint>\n  <link name=\"base_link\"\
+  >\n    <visual>\n      <origin rpy=\"0 0 0\" xyz=\"-0.032 0 0.0\"/>\n      <geometry>\n\
+  \        <mesh filename=\"package://turtlebot3_description/meshes/bases/burger_base.stl\"\
+  \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"light_black\"\
+  />\n    </visual>\n    <collision>\n      <origin rpy=\"0 0 0\" xyz=\"-0.032 0 0.070\"\
+  />\n      <geometry>\n        <box size=\"0.140 0.140 0.143\"/>\n      </geometry>\n\
+  \    </collision>\n    <inertial>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n\
+  \      <mass value=\"8.2573504e-01\"/>\n      <inertia ixx=\"2.2124416e-03\" ixy=\"\
+  -1.2294101e-05\" ixz=\"3.4938785e-05\" iyy=\"2.1193702e-03\" iyz=\"-5.0120904e-06\"\
+  \ izz=\"2.0064271e-03\"/>\n    </inertial>\n  </link>\n  <joint name=\"wheel_left_joint\"\
+  \ type=\"continuous\">\n    <parent link=\"base_link\"/>\n    <child link=\"wheel_left_link\"\
+  />\n    <origin rpy=\"-1.57 0 0\" xyz=\"0.0 0.08 0.023\"/>\n    <axis xyz=\"0 0\
+  \ 1\"/>\n  </joint>\n  <link name=\"wheel_left_link\">\n    <visual>\n      <origin\
+  \ rpy=\"1.57 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"\
+  package://turtlebot3_description/meshes/wheels/left_tire.stl\" scale=\"0.001 0.001\
+  \ 0.001\"/>\n      </geometry>\n      <material name=\"dark\"/>\n    </visual>\n\
+  \    <collision>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n      <geometry>\n\
+  \        <cylinder length=\"0.018\" radius=\"0.033\"/>\n      </geometry>\n    </collision>\n\
+  \    <inertial>\n      <origin xyz=\"0 0 0\"/>\n      <mass value=\"2.8498940e-02\"\
+  />\n      <inertia ixx=\"1.1175580e-05\" ixy=\"-4.2369783e-11\" ixz=\"-5.9381719e-09\"\
+  \ iyy=\"1.1192413e-05\" iyz=\"-1.4400107e-11\" izz=\"2.0712558e-05\"/>\n    </inertial>\n\
+  \  </link>\n  <joint name=\"wheel_right_joint\" type=\"continuous\">\n    <parent\
+  \ link=\"base_link\"/>\n    <child link=\"wheel_right_link\"/>\n    <origin rpy=\"\
+  -1.57 0 0\" xyz=\"0.0 -0.080 0.023\"/>\n    <axis xyz=\"0 0 1\"/>\n  </joint>\n\
+  \  <link name=\"wheel_right_link\">\n    <visual>\n      <origin rpy=\"1.57 0 0\"\
+  \ xyz=\"0 0 0\"/>\n      <geometry>\n        <mesh filename=\"package://turtlebot3_description/meshes/wheels/right_tire.stl\"\
+  \ scale=\"0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"dark\"\
+  />\n    </visual>\n    <collision>\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\"/>\n\
+  \      <geometry>\n        <cylinder length=\"0.018\" radius=\"0.033\"/>\n     \
+  \ </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0 0\"/>\n\
+  \      <mass value=\"2.8498940e-02\"/>\n      <inertia ixx=\"1.1175580e-05\" ixy=\"\
+  -4.2369783e-11\" ixz=\"-5.9381719e-09\" iyy=\"1.1192413e-05\" iyz=\"-1.4400107e-11\"\
+  \ izz=\"2.0712558e-05\"/>\n    </inertial>\n  </link>\n  <joint name=\"caster_back_joint\"\
+  \ type=\"fixed\">\n    <parent link=\"base_link\"/>\n    <child link=\"caster_back_link\"\
+  />\n    <origin rpy=\"-1.57 0 0\" xyz=\"-0.081 0 -0.004\"/>\n  </joint>\n  <link\
+  \ name=\"caster_back_link\">\n    <collision>\n      <origin rpy=\"0 0 0\" xyz=\"\
+  0 0.001 0\"/>\n      <geometry>\n        <box size=\"0.030 0.009 0.020\"/>\n   \
+  \   </geometry>\n    </collision>\n    <inertial>\n      <origin xyz=\"0 0 0\"/>\n\
+  \      <mass value=\"0.005\"/>\n      <inertia ixx=\"0.001\" ixy=\"0.0\" ixz=\"\
+  0.0\" iyy=\"0.001\" iyz=\"0.0\" izz=\"0.001\"/>\n    </inertial>\n  </link>\n  <joint\
+  \ name=\"imu_joint\" type=\"fixed\">\n    <parent link=\"base_link\"/>\n    <child\
+  \ link=\"imu_link\"/>\n    <origin rpy=\"0 0 0\" xyz=\"-0.032 0 0.068\"/>\n  </joint>\n\
+  \  <link name=\"imu_link\"/>\n  <joint name=\"scan_joint\" type=\"fixed\">\n   \
+  \ <parent link=\"base_link\"/>\n    <child link=\"base_scan\"/>\n    <origin rpy=\"\
+  0 0 0\" xyz=\"-0.032 0 0.172\"/>\n  </joint>\n  <link name=\"base_scan\">\n    <visual>\n\
+  \      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0\"/>\n      <geometry>\n        <mesh\
+  \ filename=\"package://turtlebot3_description/meshes/sensors/lds.stl\" scale=\"\
+  0.001 0.001 0.001\"/>\n      </geometry>\n      <material name=\"dark\"/>\n    </visual>\n\
+  \    <collision>\n      <origin rpy=\"0 0 0\" xyz=\"0.015 0 -0.0065\"/>\n      <geometry>\n\
+  \        <cylinder length=\"0.0315\" radius=\"0.055\"/>\n      </geometry>\n   \
+  \ </collision>\n    <inertial>\n      <mass value=\"0.114\"/>\n      <origin xyz=\"\
+  0 0 0\"/>\n      <inertia ixx=\"0.001\" ixy=\"0.0\" ixz=\"0.0\" iyy=\"0.001\" iyz=\"\
+  0.0\" izz=\"0.001\"/>\n    </inertial>\n  </link>\n</robot>\n\n"
+robot_state_publisher: {publish_frequency: 50.0, tf_prefix: ''}
+rosdistro: 'kinetic
+
+  '
+roslaunch:
+  uris: {host_oggy_inspiron_5567__35877: 'http://oggy-Inspiron-5567:35877/', host_oggy_inspiron_5567__41317: 'http://oggy-Inspiron-5567:41317/'}
+rosversion: '1.12.14
+
+  '
+run_id: e9cb22aa-00f6-11e9-9783-7c67a2b7f2f0
+use_sim_time: true
