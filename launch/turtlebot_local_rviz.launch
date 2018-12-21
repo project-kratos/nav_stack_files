@@ -1,0 +1,3 @@
+<launch>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find nav_stack_files)/rviz/navigation_self.rviz"/>
+</launch>
